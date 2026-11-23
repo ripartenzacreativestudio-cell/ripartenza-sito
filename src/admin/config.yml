@@ -1,4 +1,4 @@
-# Pannello di gestione del sito (Decap CMS). Si apre su https://www.tuodominio.it/admin/
+# Pannello di gestione del sito (Decap CMS). Si apre su https://ripartenza-sito.netlify.app/admin/ (poi sul dominio definitivo)
 backend:
   name: github
   repo: ripartenzacreativestudio-cell/ripartenza-sito
@@ -11,8 +11,8 @@ backend:
     deleteMedia: "Eliminata immagine {{path}}"
 
 locale: it
-site_url: https://www.tuodominio.it
-display_url: https://www.tuodominio.it
+site_url: https://ripartenza-sito.netlify.app
+display_url: https://ripartenza-sito.netlify.app
 logo_url: /assets/img/logo-192.png
 media_folder: src/assets/uploads
 public_folder: /assets/uploads
