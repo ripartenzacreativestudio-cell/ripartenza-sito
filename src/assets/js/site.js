@@ -44,6 +44,18 @@
   var sel = $('f-servizio'), q = new URLSearchParams(location.search).get('servizio');
   if (sel && q) for (var i = 0; i < sel.options.length; i++) if (sel.options[i].text === q) sel.selectedIndex = i;
 
+  /* preventivo: messaggio chiaro se manca un campo obbligatorio */
+  var form = document.querySelector('form[name="preventivo"]'), ferr = $('form-err');
+  if (form && ferr) {
+    var nomi = { nome: 'nome e cognome', email: 'email', messaggio: 'il tuo progetto', privacy: 'la spunta sulla privacy' };
+    form.addEventListener('submit', function (e) {
+      var bad = [].slice.call(form.querySelectorAll(':invalid')).filter(function (el) { return el.name && el.name !== 'form-name'; });
+      if (bad.length) { e.preventDefault(); ferr.textContent = 'Per inviare manca: ' + bad.map(function (el) { return nomi[el.name] || el.name; }).join(', ') + '.'; ferr.hidden = false; bad[0].focus(); }
+      else { ferr.hidden = true; var btn = form.querySelector('button[type="submit"]'); if (btn) { btn.disabled = true; btn.firstChild.textContent = 'Invio in corso… '; } }
+    });
+    form.setAttribute('novalidate', '');
+  }
+
   /* logo 3D: solo su schermi grandi, caricato quando serve */
   var stage = $('stage');
   if (stage && !reduce && matchMedia('(min-width: 900px)').matches) {
