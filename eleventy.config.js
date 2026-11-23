@@ -33,6 +33,11 @@ module.exports = function (cfg) {
     const peso = (u) => u === "/" ? 0 : u === "/servizi/" ? 1 : u.startsWith("/servizi/") ? 2 : u === "/sport/" ? 3 : u.startsWith("/lavori/") ? 4 : u === "/studio/" ? 5 : u === "/clienti/" ? 6 : u === "/preventivo/" ? 7 : 9;
     return [...arr].sort((a, b) => peso(a.url || "") - peso(b.url || "") || String(a.url).localeCompare(String(b.url)));
   });
+  // recensioni: solo quelle pubblicate e con testo, in ordine
+  cfg.addFilter("recensioniPubblicate", (obj) => Object.values(obj || {}).filter((r) => r && r.testo && r.pubblicata !== false)
+    .sort((a, b) => (a.ordine ?? 99) - (b.ordine ?? 99) || String(b.data || "").localeCompare(String(a.data || ""))));
+  cfg.addFilter("mediaStelle", (arr) => (arr.reduce((t, r) => t + (Number(r.stelle) || 5), 0) / (arr.length || 1)).toFixed(1).replace(".", ","));
+  cfg.addFilter("meseAnno", (d) => { const x = new Date(d); return isNaN(x) ? "" : x.toLocaleDateString("it-IT", { month: "long", year: "numeric" }); });
   cfg.addFilter("isoData", (d) => (d ? new Date(d).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10)));
   cfg.addFilter("anno", () => new Date().getFullYear());
   cfg.addFilter("telefono", (t) => String(t || "").replace(/[^\d+]/g, ""));

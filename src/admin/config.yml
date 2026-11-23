@@ -33,6 +33,7 @@ collections:
           - { name: telefono, label: Telefono, widget: string, required: false }
           - { name: whatsapp, label: "WhatsApp (con prefisso, es. +39 333 1234567)", widget: string, required: false }
           - { name: instagram, label: "Instagram (solo il nome, senza @)", widget: string }
+          - { name: link_recensioni, label: "Link per lasciare una recensione su Google (da Google Business → Chiedi recensioni, es. https://g.page/r/...)", widget: string, required: false }
           - { name: ragione_sociale, label: Ragione sociale, widget: string, required: false }
           - { name: piva, label: Partita IVA, widget: string, required: false }
           - { name: indirizzo, label: Indirizzo, widget: string, required: false }
@@ -182,3 +183,24 @@ collections:
       - { name: logo_scuro, label: Logo (versione bianca per il tema scuro), widget: image, required: false }
       - { name: larghezza_logo, label: "Larghezza logo in pixel (60 per loghi quadrati, 160 per loghi lunghi)", widget: number, value_type: int, default: 110 }
       - { name: ordine, label: Ordine, widget: number, value_type: int, default: 99 }
+
+  - name: recensioni
+    label: Recensioni
+    label_singular: Recensione
+    description: "Copia qui le recensioni vere dei clienti (da Google o ricevute per iscritto). In home compaiono le prime 3, nella pagina Clienti tutte. Se non ce n'è nessuna, la sezione non compare."
+    folder: src/_data/recensioni
+    extension: json
+    format: json
+    create: true
+    identifier_field: nome
+    slug: "{{year}}{{month}}{{day}}-{{nome}}"
+    summary: "{{stelle}}★ · {{nome}} · {{data}}"
+    fields:
+      - { name: nome, label: "Nome di chi l'ha scritta (come appare su Google)", widget: string }
+      - { name: ruolo, label: "Ruolo o attività (es. Titolare, Ginvit Academy)", widget: string, required: false }
+      - { name: stelle, label: Stelle, widget: select, options: [5, 4, 3, 2, 1], default: 5 }
+      - { name: testo, label: "Testo della recensione (copialo senza modificarlo)", widget: text }
+      - { name: data, label: Data della recensione, widget: datetime, date_format: "DD/MM/YYYY", time_format: false, format: "YYYY-MM-DD", required: false }
+      - { name: fonte, label: Fonte, widget: select, options: [Google, Instagram, Email, WhatsApp], default: Google }
+      - { name: ordine, label: "Ordine (1 = prima)", widget: number, value_type: int, default: 99 }
+      - { name: pubblicata, label: Mostra sul sito, widget: boolean, default: true }

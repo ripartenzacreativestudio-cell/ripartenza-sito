@@ -605,3 +605,19 @@ main{display:block}
 .check input{width:22px;height:22px;flex:none;margin-top:1px;cursor:pointer}
 .form-err{margin:0;padding:12px 16px;border-left:4px solid var(--arancio);background:var(--surface);font-weight:500}
 .field input:user-invalid,.field textarea:user-invalid{border-color:var(--arancio)}
+
+/* recensioni */
+.revs{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:clamp(16px,2vw,24px)}
+.rev{margin:0;display:flex;flex-direction:column;gap:16px;padding:clamp(22px,3vw,30px);background:var(--surface);border-left:4px solid var(--arancio);min-width:0}
+.rev blockquote{margin:0;flex:1}
+.rev blockquote p{margin:0;font-size:1.02rem;line-height:1.6}
+.rev blockquote p::before{content:"“";font-family:var(--display);font-weight:800;color:var(--arancio);font-size:1.6em;line-height:0;vertical-align:-.3em;margin-right:4px}
+.rev figcaption{display:flex;flex-direction:column;gap:2px;font-size:.92rem}
+.rev figcaption span{color:var(--muted)}
+.rev-src{font-size:var(--s-small);letter-spacing:.06em}
+.rev-stars{color:var(--arancio);letter-spacing:.12em;font-size:1.05rem}
+.rev-stars .off{color:var(--line)}
+.rev-avg{font-family:var(--display);font-weight:800;color:var(--fg);font-size:1.2rem}
+.rev-avg .rev-stars{font-size:.95rem}
+.rev-foot{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;margin-top:clamp(24px,3vw,36px);padding:clamp(20px,3vw,28px);border:1px dashed var(--line)}
+.rev-foot p{margin:0;max-width:52ch;color:var(--muted)}

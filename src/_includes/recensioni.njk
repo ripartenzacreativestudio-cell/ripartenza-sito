@@ -1,0 +1,26 @@
+{#- Recensioni: si gestiscono dal pannello (Recensioni). La sezione compare solo se ce n'è almeno una pubblicata. -#}
+{%- set revs = recensioni | recensioniPubblicate %}
+{%- set link = site.link_recensioni %}
+{%- if revs.length %}
+{%- set media = revs | mediaStelle %}
+<section class="sec tight-top" id="recensioni">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="display">Cosa dicono <span class="accent">di noi.</span></h2>
+      <p><span class="rev-avg" aria-label="Media {{ media }} su 5">{{ media }} <span class="rev-stars" aria-hidden="true">★</span> su 5</span> · {{ revs.length }} {{ "recensione" if revs.length == 1 else "recensioni" }}</p>
+    </div>
+    <div class="revs">
+      {%- for r in revs | head(limite or 99) %}
+      <figure class="rev">
+        <div class="rev-stars" aria-label="{{ (r.stelle or 5) | int }} stelle su 5">{% for i in range(0, (r.stelle or 5) | int) %}★{% endfor %}<span class="off">{% for i in range((r.stelle or 5) | int, 5) %}★{% endfor %}</span></div>
+        <blockquote><p>{{ r.testo }}</p></blockquote>
+        <figcaption><strong>{{ r.nome }}</strong>{% if r.ruolo %}<span>{{ r.ruolo }}</span>{% endif %}<span class="rev-src">{{ r.fonte or "Google" }}{% if r.data %} · {{ r.data | meseAnno }}{% endif %}</span></figcaption>
+      </figure>
+      {%- endfor %}
+    </div>
+    {%- if link %}<div class="rev-foot"><p>Hai lavorato con noi? Il tuo parere aiuta altre realtà a sceglierci.</p><a class="btn" href="{{ link }}" target="_blank" rel="noopener">Lasciaci una recensione</a></div>{% endif %}
+  </div>
+</section>
+{%- elif link and mostra_invito %}
+<section class="sec tight-top" id="recensioni"><div class="wrap"><div class="rev-foot"><p>Hai lavorato con noi? Il tuo parere aiuta altre realtà a sceglierci.</p><a class="btn" href="{{ link }}" target="_blank" rel="noopener">Lasciaci una recensione su Google</a></div></div></section>
+{%- endif %}
