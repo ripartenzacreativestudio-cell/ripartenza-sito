@@ -51,7 +51,26 @@
     form.addEventListener('submit', function (e) {
       var bad = [].slice.call(form.querySelectorAll(':invalid')).filter(function (el) { return el.name && el.name !== 'form-name'; });
       if (bad.length) { e.preventDefault(); ferr.textContent = 'Per inviare manca: ' + bad.map(function (el) { return nomi[el.name] || el.name; }).join(', ') + '.'; ferr.hidden = false; bad[0].focus(); }
-      else { ferr.hidden = true; var btn = form.querySelector('button[type="submit"]'); if (btn) { btn.disabled = true; btn.firstChild.textContent = 'Invio in corso… '; } }
+      else {
+        ferr.hidden = true;
+        var btn = form.querySelector('button[type="submit"]'), testo = btn ? btn.firstChild.textContent : '';
+        if (btn) { btn.disabled = true; btn.firstChild.textContent = 'Invio in corso… '; }
+        if (!window.fetch || !window.FormData) return; /* browser vecchi: invio classico */
+        e.preventDefault();
+        /* invio in background: resta sul sito e va a /grazie/ senza la pagina di FormSubmit */
+        fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+          method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form)
+        }).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+          .then(function (res) {
+            if (res.ok && String(res.d.success) === 'true') { location.href = '/grazie/'; return; }
+            throw new Error(res.d && res.d.message || 'errore');
+          })
+          .catch(function () {
+            ferr.textContent = 'Invio non riuscito. Riprova tra poco o scrivici a ripartenzacreativestudio@gmail.com.';
+            ferr.hidden = false;
+            if (btn) { btn.disabled = false; btn.firstChild.textContent = testo; }
+          });
+      }
     });
     form.setAttribute('novalidate', '');
   }
