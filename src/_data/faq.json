@@ -1,0 +1,24 @@
+{
+  "domande": [
+    {
+      "domanda": "Quanto costa lavorare con voi?",
+      "risposta": "Dipende da cosa ti serve: un logo, uno shooting e la gestione social mensile hanno costi molto diversi. Dopo una prima chiacchierata ti mandiamo una proposta chiara, senza impegno."
+    },
+    {
+      "domanda": "Quanto tempo serve?",
+      "risposta": "Concordiamo i tempi nella proposta. Per eventi e contenuti urgenti lavoriamo con il ritmo di una redazione: avvisaci il prima possibile e troviamo una soluzione."
+    },
+    {
+      "domanda": "Lavorate solo a Bari?",
+      "risposta": "Siamo a Bari e lavoriamo in tutta la Puglia. Per progetti fuori regione ne parliamo volentieri."
+    },
+    {
+      "domanda": "Posso chiedere un solo servizio?",
+      "risposta": "Certo. Puoi chiederci un singolo lavoro, come un logo o uno shooting, oppure affidarci tutta la comunicazione."
+    },
+    {
+      "domanda": "Cosa mi serve per iniziare?",
+      "risposta": "Solo un'idea di cosa vuoi ottenere. Compila il modulo preventivo o scrivici: al resto pensiamo noi."
+    }
+  ]
+}

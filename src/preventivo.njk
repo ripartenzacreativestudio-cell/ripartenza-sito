@@ -1,0 +1,51 @@
+---
+permalink: /preventivo/
+titolo: Richiedi un preventivo
+seo_descrizione: Raccontaci il tuo progetto di branding, social media, foto, video o stampa 3D. Ti rispondiamo con una proposta su misura. Ripartenza Creative Studio, Bari.
+layout: base.njk
+---
+<section class="page-hero">
+  <svg class="lines" viewBox="0 0 520 360" aria-hidden="true"><use href="#field-lines"/></svg>
+  <div class="wrap" style="position:relative">
+    <p class="label">Preventivo</p>
+    <h1 class="display">Raccontaci il tuo <span class="accent">progetto.</span></h1>
+    <p class="intro">Azienda, attività, professionista, società sportiva o ente: compila il modulo e ti rispondiamo con una proposta su misura, senza impegno.</p>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap apply">
+    <div>
+      <p class="label" style="margin-bottom:18px">Preferisci scriverci?</p>
+      <div class="contact-list">
+        {% if site.whatsapp %}<a href="https://wa.me/{{ site.whatsapp | wa }}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3a.5.5 0 0 0 0-.4l-.8-1.9c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>WhatsApp · {{ site.whatsapp }}</a>{% endif %}
+        {% if site.email %}<a href="mailto:{{ site.email }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>{{ site.email }}</a>{% endif %}
+        {% if site.telefono %}<a href="tel:{{ site.telefono | telefono }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>{{ site.telefono }}</a>{% endif %}
+        <a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>@{{ site.instagram }}</a>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>{{ site.indirizzo or "Da " + site.citta + ", al fianco delle tue idee" }}</span>
+      </div>
+    </div>
+    <form name="preventivo" method="POST" action="/grazie/" data-netlify="true" netlify-honeypot="sito-web">
+      <input type="hidden" name="form-name" value="preventivo">
+      <p class="hp"><label>Non compilare <input name="sito-web" tabindex="-1" autocomplete="off"></label></p>
+      <div class="row2">
+        <div class="field"><label for="f-nome">Nome e cognome *</label><input id="f-nome" name="nome" autocomplete="name" required></div>
+        <div class="field"><label for="f-azienda">Azienda o attività</label><input id="f-azienda" name="azienda" autocomplete="organization"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-email">Email *</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="f-tel">Telefono</label><input id="f-tel" name="telefono" type="tel" autocomplete="tel"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="f-servizio">Di cosa hai bisogno</label><select id="f-servizio" name="servizio">{% for s in collections.serviziOrdinati %}<option>{{ s.data.titolo }}</option>{% endfor %}<option>Sito web</option><option>Comunicazione per lo sport</option><option>Più servizi insieme</option></select></div>
+        <div class="field"><label for="f-tempi">Tempi</label><select id="f-tempi" name="tempi"><option>Il prima possibile</option><option>Entro un mese</option><option>Nei prossimi mesi</option><option>Sto valutando</option></select></div>
+      </div>
+      <div class="field"><label for="f-msg">Il tuo progetto *</label><textarea id="f-msg" name="messaggio" rows="5" required placeholder="Cosa fa la tua attività e cosa vorresti ottenere"></textarea></div>
+      <label class="check"><input type="checkbox" name="privacy" required> <span>Ho letto l'<a href="/privacy/">informativa privacy</a> e acconsento a essere ricontattato per questa richiesta. *</span></label>
+      <div><button class="btn" type="submit">Invia la richiesta <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>
+    </form>
+  </div>
+</section>
+<section class="sec tight-top"><div class="wrap">
+  <div class="sec-head"><h2 class="display">Domande frequenti.</h2></div>
+  {% include "faq.njk" %}
+</div></section>

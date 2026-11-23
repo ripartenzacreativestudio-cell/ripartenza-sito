@@ -1,0 +1,19 @@
+{
+  "numero": "04",
+  "nome": "Gianluca",
+  "cognome": "Paglionico",
+  "ruolo": "Foto e sviluppo web",
+  "posizione": "Attaccante · finalizza l'azione",
+  "foto": "/assets/uploads/squadra/team-04.jpg",
+  "compiti": [
+    "Shooting fotografici e post-produzione",
+    "Fotografia di eventi e prodotto",
+    "Progettazione e sviluppo di siti web"
+  ],
+  "servizi": [
+    "Foto & Video",
+    "Sito web"
+  ],
+  "campo_x": 120,
+  "campo_y": 132
+}

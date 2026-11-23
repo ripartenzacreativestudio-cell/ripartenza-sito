@@ -1,0 +1,5 @@
+<div class="steps">
+  {%- for p in home.processo %}
+  <div class="step"><div class="n">{{ "0" if loop.index < 10 }}{{ loop.index }}</div><h3>{{ p.titolo }}</h3><p>{{ p.testo }}</p></div>
+  {%- endfor %}
+</div>

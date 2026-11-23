@@ -1,0 +1,68 @@
+---
+permalink: /studio/
+titolo: Lo studio e la squadra
+seo_descrizione: "Da Contropiede a Ripartenza: la storia dello studio, il marchio e la formazione che lavora ai tuoi progetti a Bari."
+layout: base.njk
+---
+{%- set squadra = squadra | elenco("numero") %}
+<section class="page-hero">
+  <svg class="lines" viewBox="0 0 520 360" aria-hidden="true"><use href="#field-lines"/></svg>
+  <div class="wrap" style="position:relative">
+    <p class="label">Lo studio</p>
+    <h1 class="display">{{ studio.titolo }} <span class="accent">{{ studio.titolo_accento }}</span></h1>
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap story">
+    <div><p class="label" style="margin-bottom:20px">Da Contropiede a Ripartenza</p><h2 class="display">{{ studio.storia_titolo }}</h2></div>
+    <div class="story-cols">
+      <div><h3>Da dove veniamo</h3><p>{{ studio.da_dove }}</p></div>
+      <div><h3>Dove andiamo</h3><p>{{ studio.dove_andiamo }}</p></div>
+    </div>
+  </div>
+</section>
+<section class="sec tight-top"><div class="wrap">
+  <div class="mark-explain short">
+    <svg viewBox="0 0 366 626" aria-hidden="true"><use href="#r-mark"/></svg>
+    <div><p class="label">Il marchio</p><p style="margin-top:12px;max-width:60ch">{{ studio.marchio }}</p></div>
+  </div>
+</div></section>
+<section class="sec tight-top">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="display">La formazione.</h2><p>{{ squadra.length }} titolari, un solo schema. {{ studio.formazione_testo }}</p></div>
+    <div class="formation">
+      <div class="pitch">
+        <svg viewBox="0 0 400 560" role="group" aria-label="Campo con la formazione">
+          <rect class="fl" x="10" y="10" width="380" height="540"/><path class="fl" d="M10 280H390"/><circle class="fl" cx="200" cy="280" r="50"/>
+          <rect class="fl" x="110" y="10" width="180" height="70"/><rect class="fl" x="110" y="480" width="180" height="70"/>
+          {%- for m in squadra %}
+          <g class="dot" tabindex="0" role="button" aria-label="Apri la scheda di {{ m.nome }} {{ m.cognome }}" data-p="{{ loop.index }}"><circle cx="{{ m.campo_x }}" cy="{{ m.campo_y }}" r="20"/><text class="n" x="{{ m.campo_x }}" y="{{ m.campo_y + 5 }}">{{ m.numero }}</text><text class="nm" x="{{ m.campo_x }}" y="{{ m.campo_y + 40 }}">{{ m.nome }}</text></g>
+          {%- endfor %}
+        </svg>
+      </div>
+      <div class="team">
+        {%- for m in squadra %}
+        <article class="player" role="button" aria-haspopup="dialog" data-p="{{ loop.index }}" tabindex="0"><div class="num">{{ m.numero }}</div><h3>{{ m.nome }} <span>{{ m.cognome }}</span></h3><p>{{ m.ruolo }}</p><span class="open">Scheda <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></article>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sheet-wrap" id="sheet" hidden>
+  <div class="sheet-bg" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sh-name">
+    <button class="sheet-close" type="button" data-close aria-label="Chiudi la scheda">Chiudi ✕</button>
+    <div class="photo" id="sh-photo"><span class="ini" id="sh-ini"></span><span class="soon">Foto in arrivo</span><span class="bignum" id="sh-num"></span></div>
+    <div class="info">
+      <p class="label">La formazione · Ripartenza</p>
+      <h2 class="display" id="sh-name"></h2>
+      <p class="s-role" id="sh-role"></p>
+      <span class="pos" id="sh-pos"></span>
+      <h3 id="sh-duties-h">Di cosa si occupa</h3><ul class="duties" id="sh-duties"></ul>
+      <h3 id="sh-chips-h">Servizi</h3><div class="chips" id="sh-chips"></div>
+      <div class="sheet-nav"><button type="button" id="sh-prev">← Precedente</button><span class="count" id="sh-count"></span><button type="button" id="sh-next">Successivo →</button></div>
+    </div>
+  </div>
+</div>
+<script type="application/json" id="squadra-data">{{ squadra | json | safe }}</script>
+{% include "cta.njk" %}

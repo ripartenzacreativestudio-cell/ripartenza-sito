@@ -1,0 +1,12 @@
+<div class="services">
+  {%- for s in collections.serviziOrdinati %}
+  <a class="svc" href="{{ s.url }}">
+    <svg class="svc-icon" aria-hidden="true"><use href="#i-{{ s.data.icona }}"/></svg>
+    <h3>{{ s.data.titolo }}</h3>
+    <p class="why">{{ s.data.perche }}</p>
+    <p>{{ s.data.descrizione }}</p>
+    {% if s.data.prezzo_da %}<span class="price">A partire da {{ s.data.prezzo_da }}</span>{% endif %}
+    <span class="svc-link">Scopri il servizio <svg aria-hidden="true"><use href="#i-arrow"/></svg></span>
+  </a>
+  {%- endfor %}
+</div>

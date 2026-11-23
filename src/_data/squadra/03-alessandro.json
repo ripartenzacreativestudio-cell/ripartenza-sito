@@ -1,0 +1,19 @@
+{
+  "numero": "03",
+  "nome": "Alessandro",
+  "cognome": "Cavalluzzi",
+  "ruolo": "Video e stampa 3D",
+  "posizione": "Laterale · costruisce il gioco",
+  "foto": "/assets/uploads/squadra/team-03.jpg",
+  "compiti": [
+    "Riprese, montaggio e reel",
+    "Copertura video di eventi",
+    "Progettazione e stampa 3D di prototipi e gadget"
+  ],
+  "servizi": [
+    "Foto & Video",
+    "Stampa 3D"
+  ],
+  "campo_x": 310,
+  "campo_y": 330
+}

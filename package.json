@@ -1,0 +1,12 @@
+{
+  "name": "ripartenza-sito",
+  "private": true,
+  "description": "Sito di Ripartenza Creative Studio",
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.0.0"
+  }
+}

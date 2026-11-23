@@ -1,0 +1,9 @@
+{
+  "nome": "Captains",
+  "descrizione": "Football academy",
+  "settore": "sport",
+  "logo": "/assets/uploads/clienti/captains.webp",
+  "logo_scuro": "/assets/uploads/clienti/captains-bianco.webp",
+  "larghezza_logo": 76,
+  "ordine": 2
+}

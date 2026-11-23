@@ -1,0 +1,19 @@
+{
+  "numero": "02",
+  "nome": "Massimiliano",
+  "cognome": "Lella",
+  "ruolo": "Social media",
+  "posizione": "Laterale · spinge sulla fascia",
+  "foto": "/assets/uploads/squadra/team-02.jpg",
+  "compiti": [
+    "Piani editoriali e calendario dei contenuti",
+    "Gestione dei profili e delle community",
+    "Copy, campagne sponsorizzate e report"
+  ],
+  "servizi": [
+    "Social media",
+    "Strategia"
+  ],
+  "campo_x": 90,
+  "campo_y": 330
+}

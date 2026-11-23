@@ -1,0 +1,5 @@
+<a class="work" href="{{ p.url }}">
+  <div class="cover">{% if p.data.copertina %}<img src="{{ p.data.copertina }}" alt="{{ p.data.titolo }}" loading="lazy" decoding="async">{% endif %}</div>
+  <div class="body"><span class="cl">{{ p.data.cliente }}</span><h3>{{ p.data.titolo }}</h3><p>{{ p.data.riassunto }}</p>
+  {% if p.data.servizi %}<div class="chips" style="color:var(--muted);margin-top:6px">{% for s in p.data.servizi %}<span>{{ s }}</span>{% endfor %}</div>{% endif %}</div>
+</a>

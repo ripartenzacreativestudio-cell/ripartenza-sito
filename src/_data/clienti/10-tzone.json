@@ -1,0 +1,9 @@
+{
+  "nome": "Tzone",
+  "descrizione": "Science for health",
+  "settore": "salute",
+  "logo": "/assets/uploads/clienti/tzone.webp",
+  "logo_scuro": "/assets/uploads/clienti/tzone-bianco.webp",
+  "larghezza_logo": 160,
+  "ordine": 10
+}

@@ -1,0 +1,31 @@
+---
+permalink: /sport/
+titolo: Comunicazione per lo sport
+seo_titolo: Comunicazione per academy e società sportive a Bari
+seo_descrizione: Grafiche matchday, media day, foto e video in campo, identità e merchandising per academy, società sportive ed eventi in Puglia.
+layout: base.njk
+---
+{%- set clienti = clienti | elenco("ordine") | filtraSettore("sport") %}
+<section class="page-hero">
+  <svg class="lines" viewBox="0 0 520 360" aria-hidden="true"><use href="#field-lines"/></svg>
+  <div class="wrap" style="position:relative">
+    <p class="label">Sport</p>
+    <h1 class="display">{{ sport.titolo }} <span class="accent">{{ sport.titolo_accento }}</span></h1>
+    <p class="intro">{{ sport.intro }}</p>
+  </div>
+</section>
+<section class="sec"><div class="wrap">
+  <div class="sec-head"><h2 class="display">Cosa facciamo per lo sport.</h2></div>
+  <div class="sport-grid">{% for s in sport.servizi %}<div class="sport-card"><h3>{{ s.titolo }}</h3><p>{{ s.testo }}</p></div>{% endfor %}</div>
+</div></section>
+{% if clienti.length %}
+<section class="sec tight-top"><div class="wrap">
+  <div class="sec-head"><h2 class="display">In campo con noi.</h2></div>
+  <div class="clients">{% for c in clienti %}<article class="client"><div class="lg">{% include "logo-cliente.njk" %}</div><div class="body"><h3>{{ c.nome }}</h3>{% if c.descrizione %}<p>{{ c.descrizione }}</p>{% endif %}</div></article>{% endfor %}</div>
+</div></section>
+{% endif %}
+<section class="sec tight-top"><div class="wrap">
+  <div class="cp-box"><div style="background:#0D0F12;border-radius:6px;padding:14px;display:flex;justify-content:center"><img src="/assets/img/contropiede.png" alt="Logo Contropiede"></div>
+  <div><p class="label">Il nostro media</p><h2 class="display" style="font-size:clamp(1.6rem,3vw,2.4rem);margin-top:12px">{{ sport.contropiede_titolo }}</h2><p class="muted" style="max-width:60ch">{{ sport.contropiede_testo }}</p></div></div>
+</div></section>
+{% include "cta.njk" %}

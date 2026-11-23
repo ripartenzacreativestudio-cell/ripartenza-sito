@@ -1,0 +1,33 @@
+{
+  "etichetta": "Creative Studio · Bari",
+  "titolo": "Ogni grande idea merita una",
+  "titolo_accento": "Ripartenza.",
+  "frase": "Studio creativo a Bari per aziende, attività e realtà sportive: branding, social, foto e video, stampa 3D.",
+  "cta_principale": "Richiedi un preventivo",
+  "cta_secondaria": "Guarda i lavori",
+  "showreel_video": "",
+  "showreel_poster": "",
+  "showreel_titolo": "Il nostro showreel",
+  "motto": "Veloci · Precisi · Decisivi",
+  "processo_titolo": "Come lavoriamo.",
+  "processo": [
+    {
+      "titolo": "Ascolto",
+      "testo": "Una prima chiamata o un caffè: conosciamo te, il tuo pubblico e i tuoi obiettivi."
+    },
+    {
+      "titolo": "Schema",
+      "testo": "Ti mandiamo una proposta chiara: cosa facciamo, in che tempi e con quale budget."
+    },
+    {
+      "titolo": "Ripartenza",
+      "testo": "Produciamo e pubblichiamo con il ritmo di una redazione, aggiornandoti a ogni passo."
+    },
+    {
+      "titolo": "Risultato",
+      "testo": "Misuriamo cosa funziona, correggiamo e rilanciamo."
+    }
+  ],
+  "chiusura_titolo": "Il tuo brand è pronto a ripartire?",
+  "chiusura_testo": "Raccontaci il tuo progetto: ti rispondiamo con una proposta su misura."
+}

@@ -1,0 +1,104 @@
+---
+permalink: /
+layout: base.njk
+seo_titolo: Branding, social, foto e video a Bari
+---
+{%- set clienti = clienti | elenco("ordine") %}
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <p class="label" style="margin-bottom:24px">{{ home.etichetta }}</p>
+        <h1 class="display">{{ home.titolo }} <span class="accent">{{ home.titolo_accento }}</span></h1>
+        <p class="frase">{{ home.frase }}</p>
+        <div class="ctas">
+          <a class="btn" href="/preventivo/">{{ home.cta_principale }} <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          {% if collections.progetti.length %}<a class="btn ghost" href="/lavori/">{{ home.cta_secondaria }}</a>{% else %}<a class="btn ghost" href="/servizi/">Scopri i servizi</a>{% endif %}
+        </div>
+      </div>
+      <div class="stage" id="stage">
+        <div class="stage-ring" aria-hidden="true"></div>
+        <div class="stage-mark" aria-hidden="true"><svg viewBox="0 0 366 626"><use href="#r-mark"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="motto" aria-hidden="true"><div class="ticker-track">{% for i in range(0, 6) %}<span>{{ home.motto }}</span>{% endfor %}</div></div>
+
+{% if home.showreel_video %}
+<section class="sec">
+  <div class="wrap">
+    <div class="showreel">
+      <video src="{{ home.showreel_video }}" {% if home.showreel_poster %}poster="{{ home.showreel_poster }}"{% endif %} autoplay muted loop playsinline preload="metadata" aria-label="{{ home.showreel_titolo }}"></video>
+      <span class="tag">{{ home.showreel_titolo }}</span>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="display">Quattro modi per cambiare passo.</h2><p>Tutto sotto lo stesso tetto, con la velocità di una redazione e la cura di uno studio.</p></div>
+    {% include "servizi-cards.njk" %}
+  </div>
+</section>
+
+{% if collections.progetti.length %}
+<section class="sec tight-top">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="display">Lavori recenti.</h2><p><a href="/lavori/">Vedi tutti i lavori →</a></p></div>
+    <div class="works">{% for p in collections.progetti | head(3) %}{% include "work-card.njk" %}{% endfor %}</div>
+  </div>
+</section>
+{% endif %}
+
+<section class="sec tight-top">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="display">Hanno scelto Ripartenza.</h2><p>Academy sportive, professionisti della salute, aziende e scuole.</p></div>
+    <div class="marquee" aria-label="Clienti"><div class="marquee-track">
+      {%- for rep in [0, 1] %}{% for c in clienti %}<a href="/clienti/" style="--w:{{ c.larghezza_logo }}px"{% if rep %} aria-hidden="true" tabindex="-1"{% else %} aria-label="{{ c.nome }}"{% endif %}>{% include "logo-cliente.njk" %}</a>{% endfor %}{% endfor %}
+    </div></div>
+    <div class="marquee-foot"><p class="label">{{ clienti.length }} realtà in campo con noi</p><a href="/clienti/">Scopri tutti i clienti →</a></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="approach">
+      <div>
+        <p class="label">Per le realtà sportive</p>
+        <h2 class="display" style="font-size:var(--s-h2);margin-top:18px">{{ sport.titolo }} <span class="accent">{{ sport.titolo_accento }}</span></h2>
+        <p style="max-width:52ch;opacity:.85;margin-top:20px">{{ sport.intro }}</p>
+        <p style="margin-top:26px"><a class="btn" href="/sport/">Scopri cosa facciamo per lo sport <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+      </div>
+      <div class="board" role="img" aria-label="Lavagna tattica: palla recuperata in difesa e rilanciata in contropiede fino alla porta avversaria">
+        <svg viewBox="0 0 520 340">
+          <rect class="fl" x="10" y="10" width="500" height="320"/><path class="fl" d="M260 10V330"/><circle class="fl" cx="260" cy="170" r="50"/>
+          <rect class="fl" x="10" y="100" width="60" height="140"/><rect class="fl" x="450" y="100" width="60" height="140"/>
+          <circle class="opp" cx="330" cy="110" r="10"/><circle class="opp" cx="360" cy="220" r="10"/><circle class="opp" cx="420" cy="160" r="10"/><circle class="opp" cx="290" cy="270" r="10"/>
+          <circle class="us" cx="80" cy="210" r="11"/><circle class="us" cx="230" cy="150" r="11"/><circle class="us" cx="400" cy="90" r="11"/>
+          <path class="pass" d="M80 210 L230 150"/><path class="run" d="M230 150 C300 120 350 80 400 90 C440 98 470 140 490 180"/>
+          <circle class="ball" cx="80" cy="198" r="6"/>
+          <text x="58" y="240">Recupero</text><text x="196" y="182">Lancio</text><text x="388" y="70">Gol</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="display">{{ home.processo_titolo }}</h2><p>Dalla prima chiacchierata al risultato, sai sempre a che punto siamo.</p></div>
+    {% include "processo.njk" %}
+  </div>
+</section>
+
+<section class="sec tight-top">
+  <div class="wrap">
+    <div class="sec-head"><h2 class="display">Domande frequenti.</h2></div>
+    {% include "faq.njk" %}
+  </div>
+</section>
+
+{% include "cta.njk" %}

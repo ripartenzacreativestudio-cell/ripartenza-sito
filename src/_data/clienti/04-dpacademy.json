@@ -1,0 +1,9 @@
+{
+  "nome": "Diliso Pucino Academy",
+  "descrizione": "Academy di calcio",
+  "settore": "sport",
+  "logo": "/assets/uploads/clienti/dpacademy.webp",
+  "logo_scuro": "/assets/uploads/clienti/dpacademy-bianco.webp",
+  "larghezza_logo": 64,
+  "ordine": 4
+}

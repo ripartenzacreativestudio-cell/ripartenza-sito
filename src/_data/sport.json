@@ -1,0 +1,25 @@
+{
+  "titolo": "Raccontiamo lo sport",
+  "titolo_accento": "da dentro.",
+  "intro": "Academy, società sportive ed eventi: con Contropiede raccontiamo lo sport pugliese ogni giorno. Sappiamo cosa serve a chi vive di campo, partite e risultati.",
+  "servizi": [
+    {
+      "titolo": "Matchday e risultati",
+      "testo": "Grafiche per formazioni, risultati, marcatori e prossime partite, pronte in pochi minuti."
+    },
+    {
+      "titolo": "Media day e ritratti",
+      "testo": "Foto ufficiali di squadra, staff e giocatori, per social, sito e materiali stampati."
+    },
+    {
+      "titolo": "Foto e video in campo",
+      "testo": "Copertura di partite, tornei e allenamenti, con reel e highlight per i social."
+    },
+    {
+      "titolo": "Identità della società",
+      "testo": "Logo, kit grafico, divise e merchandising coerenti, anche con oggetti in stampa 3D."
+    }
+  ],
+  "contropiede_titolo": "Contropiede, il nostro campo di allenamento.",
+  "contropiede_testo": "La testata da cui nasce Ripartenza. Ogni giorno raccontiamo lo sport pugliese: è lì che alleniamo ritmo, sguardo e velocità."
+}

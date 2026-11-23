@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{%- set titoloPagina = (seo_titolo or titolo or site.nome) %}
+{%- set titoloCompleto = titoloPagina if titoloPagina == site.nome else (titoloPagina + " · " + site.nome) %}
+{%- set desc = seo_descrizione or descrizione or site.descrizione %}
+{%- set canon = site.url + page.url %}
+<title>{{ titoloCompleto }}</title>
+<meta name="description" content="{{ desc }}">
+<link rel="canonical" href="{{ canon }}">
+<meta name="theme-color" content="#0D0F12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ site.nome }}">
+<meta property="og:title" content="{{ titoloCompleto }}">
+<meta property="og:description" content="{{ desc }}">
+<meta property="og:url" content="{{ canon }}">
+<meta property="og:image" content="{{ site.url }}{{ og_immagine or copertina or '/assets/img/og-image.jpg' }}">
+<meta property="og:locale" content="it_IT">
+<meta name="twitter:card" content="summary_large_image">
+{% if noindex %}<meta name="robots" content="noindex">{% endif %}
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/titolo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<script>try{var t=localStorage.getItem('rip-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script type="application/ld+json">{{ site | schema | safe }}</script>
+</head>
+<body>
+<a class="skip" href="#contenuto">Vai al contenuto</a>
+{% include "defs.njk" %}
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="{{ site.nome }}, home">
+      <svg aria-hidden="true"><use href="#r-mark"/></svg>
+      <svg class="word" aria-hidden="true"><use href="#lg-word"/></svg>
+    </a>
+    <div class="nav-tools">
+      <button class="theme-btn" id="theme-btn" type="button" aria-label="Cambia tema chiaro o scuro"><svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg><svg class="moon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg></button>
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="links">Menu</button>
+    </div>
+    <nav class="links" id="links" aria-label="Menu principale">
+      {%- macro voce(url, nome) %}<a href="{{ url }}"{% if page.url and page.url.startsWith(url) %} aria-current="page"{% endif %}>{{ nome }}</a>{% endmacro %}
+      {{ voce("/servizi/", "Servizi") }}
+      {% if collections.progetti.length %}{{ voce("/lavori/", "Lavori") }}{% endif %}
+      {{ voce("/sport/", "Sport") }}
+      {{ voce("/studio/", "Studio") }}
+      {{ voce("/clienti/", "Clienti") }}
+      <a href="/preventivo/" class="cta"{% if page.url == '/preventivo/' %} aria-current="page"{% endif %}>Preventivo</a>
+    </nav>
+  </div>
+</header>
+<main id="contenuto">
+{{ content | safe }}
+</main>
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="brand" href="/" aria-label="{{ site.nome }}, home"><svg aria-hidden="true"><use href="#r-mark"/></svg><svg class="word" aria-hidden="true"><use href="#lg-word"/></svg></a>
+      <p style="margin:16px 0 0;max-width:44ch">Ogni grande idea merita una Ripartenza.<br>{{ site.ragione_sociale or site.nome }}{% if site.indirizzo %} · {{ site.indirizzo }}{% endif %} · {{ site.citta }}, {{ site.regione }}{% if site.piva %}<br>P.IVA {{ site.piva }}{% endif %}<br>© {{ "" | anno }}</p>
+    </div>
+    <div><h4>Pagine</h4><nav aria-label="Pagine"><a href="/servizi/">Servizi</a>{% if collections.progetti.length %}<a href="/lavori/">Lavori</a>{% endif %}<a href="/sport/">Sport</a><a href="/studio/">Studio</a><a href="/clienti/">Clienti</a></nav></div>
+    <div><h4>Contatti</h4><nav aria-label="Contatti"><a href="/preventivo/">Richiedi un preventivo</a><a href="https://www.instagram.com/{{ site.instagram }}/" target="_blank" rel="noopener">Instagram ↗</a>{% if site.email %}<a href="mailto:{{ site.email }}">{{ site.email }}</a>{% endif %}<a href="/privacy/">Privacy</a></nav></div>
+  </div>
+</footer>
+<div class="wipe" id="wipe" aria-hidden="true"><i></i><i></i><i><svg viewBox="0 0 366 626"><use href="#r-mark"/></svg></i></div>
+<button class="to-top" id="to-top" type="button" aria-label="Torna all'inizio della pagina"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" aria-hidden="true"><path d="M12 20V5M5 12l7-7 7 7"/></svg></button>
+<script src="/assets/js/site.js" defer></script>
+</body>
+</html>

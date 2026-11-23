@@ -1,0 +1,36 @@
+---
+layout: base.njk
+---
+<section class="page-hero">
+  <svg class="lines" viewBox="0 0 520 360" aria-hidden="true"><use href="#field-lines"/></svg>
+  <div class="wrap" style="position:relative">
+    <nav class="crumbs" aria-label="Percorso"><a href="/">Home</a><span>/</span><a href="/servizi/">Servizi</a><span>/</span><span aria-current="page">{{ titolo }}</span></nav>
+    <h1 class="display">{{ titolo }}</h1>
+    <p class="intro">{{ perche }} {{ descrizione }}</p>
+    {% if prezzo_da %}<p class="price" style="margin-top:16px;font-size:1rem">A partire da {{ prezzo_da }}</p>{% endif %}
+  </div>
+</section>
+<section class="sec">
+  <div class="wrap apply">
+    <div class="prose">{{ content | safe }}
+      <p style="margin-top:28px"><a class="btn" href="/preventivo/?servizio={{ titolo | urlencode }}">Chiedi un preventivo per {{ titolo }} <svg aria-hidden="true"><use href="#i-arrow"/></svg></a></p>
+    </div>
+    <div><p class="label" style="margin-bottom:16px">Cosa comprende</p><ul class="checks">{% for v in voci %}<li>{{ v }}</li>{% endfor %}</ul></div>
+  </div>
+</section>
+{%- set correlati = collections.progetti | perServizio(titolo) %}
+{% if correlati.length %}
+<section class="sec tight-top"><div class="wrap">
+  <div class="sec-head"><h2 class="display">Lavori di {{ titolo }}.</h2></div>
+  <div class="works">{% for p in correlati | head(3) %}{% include "work-card.njk" %}{% endfor %}</div>
+</div></section>
+{% endif %}
+<section class="sec tight-top"><div class="wrap">
+  <div class="sec-head"><h2 class="display">Gli altri servizi.</h2></div>
+  <div class="services">
+  {%- for s in collections.serviziOrdinati %}{% if s.url != page.url %}
+    <a class="svc" href="{{ s.url }}"><svg class="svc-icon" aria-hidden="true"><use href="#i-{{ s.data.icona }}"/></svg><h3>{{ s.data.titolo }}</h3><p>{{ s.data.descrizione }}</p><span class="svc-link">Scopri <svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+  {%- endif %}{% endfor %}
+  </div>
+</div></section>
+{% include "cta.njk" %}

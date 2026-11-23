@@ -1,0 +1,184 @@
+# Pannello di gestione del sito (Decap CMS). Si apre su https://www.tuodominio.it/admin/
+backend:
+  name: github
+  repo: ripartenzacreativestudio-cell/ripartenza-sito
+  branch: main
+  commit_messages:
+    create: "Nuovo {{collection}}: {{slug}}"
+    update: "Aggiornato {{collection}}: {{slug}}"
+    delete: "Eliminato {{collection}}: {{slug}}"
+    uploadMedia: "Caricata immagine {{path}}"
+    deleteMedia: "Eliminata immagine {{path}}"
+
+locale: it
+site_url: https://www.tuodominio.it
+display_url: https://www.tuodominio.it
+logo_url: /assets/img/logo-192.png
+media_folder: src/assets/uploads
+public_folder: /assets/uploads
+
+collections:
+  # ---------------- Pagine e impostazioni ----------------
+  - name: impostazioni
+    label: Pagine e impostazioni
+    editor: { preview: false }
+    files:
+      - name: site
+        label: Dati dello studio
+        file: src/_data/site.json
+        fields:
+          - { name: nome, label: Nome dello studio, widget: string }
+          - { name: url, label: "Indirizzo del sito (es. https://www.ripartenza.it)", widget: string }
+          - { name: email, label: Email, widget: string, required: false }
+          - { name: telefono, label: Telefono, widget: string, required: false }
+          - { name: whatsapp, label: "WhatsApp (con prefisso, es. +39 333 1234567)", widget: string, required: false }
+          - { name: instagram, label: "Instagram (solo il nome, senza @)", widget: string }
+          - { name: ragione_sociale, label: Ragione sociale, widget: string, required: false }
+          - { name: piva, label: Partita IVA, widget: string, required: false }
+          - { name: indirizzo, label: Indirizzo, widget: string, required: false }
+          - { name: citta, label: Città, widget: string }
+          - { name: regione, label: Regione, widget: string }
+          - { name: descrizione, label: "Descrizione per Google (max 160 caratteri)", widget: text }
+      - name: home
+        label: Home
+        file: src/_data/home.json
+        fields:
+          - { name: etichetta, label: Etichetta sopra il titolo, widget: string }
+          - { name: titolo, label: Titolo, widget: string }
+          - { name: titolo_accento, label: Parola finale in arancio, widget: string }
+          - { name: frase, label: "Frase: cosa fate e per chi", widget: text }
+          - { name: cta_principale, label: Testo pulsante principale, widget: string }
+          - { name: cta_secondaria, label: Testo pulsante lavori, widget: string }
+          - { name: showreel_video, label: "Showreel (video MP4, max 20 MB)", widget: file, required: false }
+          - { name: showreel_poster, label: Immagine di copertina dello showreel, widget: image, required: false }
+          - { name: showreel_titolo, label: Titolo showreel, widget: string }
+          - { name: motto, label: Frase del nastro arancio, widget: string }
+          - { name: processo_titolo, label: Titolo "Come lavoriamo", widget: string }
+          - name: processo
+            label: Fasi di lavoro
+            widget: list
+            fields: [ { name: titolo, label: Titolo, widget: string }, { name: testo, label: Testo, widget: text } ]
+          - { name: chiusura_titolo, label: Titolo fascia finale arancio, widget: string }
+          - { name: chiusura_testo, label: Testo fascia finale, widget: text }
+      - name: studio
+        label: Pagina Studio
+        file: src/_data/studio.json
+        fields:
+          - { name: titolo, label: Titolo, widget: string }
+          - { name: titolo_accento, label: Parola in arancio, widget: string }
+          - { name: storia_titolo, label: Titolo storia, widget: string }
+          - { name: da_dove, label: Da dove veniamo, widget: text }
+          - { name: dove_andiamo, label: Dove andiamo, widget: text }
+          - { name: marchio, label: Il marchio, widget: text }
+          - { name: formazione_testo, label: Testo sopra la formazione, widget: text }
+      - name: sport
+        label: Pagina Sport
+        file: src/_data/sport.json
+        fields:
+          - { name: titolo, label: Titolo, widget: string }
+          - { name: titolo_accento, label: Parole in arancio, widget: string }
+          - { name: intro, label: Introduzione, widget: text }
+          - name: servizi
+            label: Cosa facciamo per lo sport
+            widget: list
+            fields: [ { name: titolo, label: Titolo, widget: string }, { name: testo, label: Testo, widget: text } ]
+          - { name: contropiede_titolo, label: Titolo box Contropiede, widget: string }
+          - { name: contropiede_testo, label: Testo box Contropiede, widget: text }
+      - name: faq
+        label: Domande frequenti
+        file: src/_data/faq.json
+        fields:
+          - name: domande
+            label: Domande
+            widget: list
+            fields: [ { name: domanda, label: Domanda, widget: string }, { name: risposta, label: Risposta, widget: text } ]
+
+  # ---------------- Servizi ----------------
+  - name: servizi
+    label: Servizi
+    label_singular: Servizio
+    folder: src/servizi
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{titolo}}"
+    sortable_fields: [ordine, titolo]
+    summary: "{{ordine}} · {{titolo}}"
+    fields:
+      - { name: titolo, label: Nome del servizio, widget: string }
+      - { name: ordine, label: Ordine, widget: number, value_type: int, default: 9 }
+      - { name: icona, label: Icona, widget: select, options: [ { label: Branding, value: brand }, { label: Social, value: social }, { label: Foto e video, value: foto }, { label: Stampa 3D, value: 3d } ] }
+      - { name: perche, label: "Frase breve (es. Per renderti riconoscibile.)", widget: string }
+      - { name: descrizione, label: Descrizione breve, widget: text }
+      - { name: voci, label: Cosa comprende, widget: list, field: { name: voce, label: Voce, widget: string } }
+      - { name: prezzo_da, label: "Prezzo indicativo (es. 350 €). Vuoto = non mostrato", widget: string, required: false }
+      - { name: seo_titolo, label: Titolo per Google, widget: string, required: false }
+      - { name: seo_descrizione, label: Descrizione per Google, widget: text, required: false }
+      - { name: body, label: Testo della pagina, widget: markdown }
+
+  # ---------------- Lavori ----------------
+  - name: lavori
+    label: Lavori
+    label_singular: Lavoro
+    folder: src/lavori
+    extension: md
+    format: frontmatter
+    create: true
+    slug: "{{titolo}}"
+    summary: "{{titolo}} · {{cliente}} {{pubblicato}}"
+    fields:
+      - { name: titolo, label: Titolo del progetto, widget: string }
+      - { name: cliente, label: Cliente, widget: string }
+      - { name: pubblicato, label: Pubblicato sul sito, widget: boolean, default: true }
+      - { name: in_evidenza, label: In evidenza in home, widget: boolean, default: false }
+      - { name: data, label: Data, widget: datetime, time_format: false, date_format: "DD/MM/YYYY", format: "YYYY-MM-DD" }
+      - { name: servizi, label: Servizi, widget: select, multiple: true, options: ["Branding", "Social Media", "Foto & Video", "Stampa 3D", "Sito web"] }
+      - { name: copertina, label: Immagine di copertina, widget: image }
+      - { name: riassunto, label: "Riassunto (una riga)", widget: text }
+      - { name: risultato, label: "Risultato (es. +40% follower in 3 mesi)", widget: string, required: false }
+      - { name: video, label: "Video (link YouTube o Vimeo, oppure file)", widget: string, required: false }
+      - { name: galleria, label: Galleria immagini, widget: list, required: false, field: { name: immagine, label: Immagine, widget: image } }
+      - { name: body, label: Racconto del progetto, widget: markdown }
+
+  # ---------------- Squadra ----------------
+  - name: squadra
+    label: Squadra
+    label_singular: Persona
+    folder: src/_data/squadra
+    extension: json
+    format: json
+    create: true
+    identifier_field: nome
+    slug: "{{numero}}-{{nome}}"
+    summary: "{{numero}} · {{nome}} {{cognome}}"
+    fields:
+      - { name: numero, label: "Numero di maglia (es. 07)", widget: string }
+      - { name: nome, label: Nome, widget: string }
+      - { name: cognome, label: Cognome, widget: string }
+      - { name: ruolo, label: Ruolo nello studio, widget: string }
+      - { name: posizione, label: "Posizione in campo (es. Attaccante · finalizza l'azione)", widget: string, required: false }
+      - { name: foto, label: "Foto (verticale)", widget: image, required: false }
+      - { name: compiti, label: Di cosa si occupa, widget: list, required: false, field: { name: compito, label: Compito, widget: string } }
+      - { name: servizi, label: Servizi, widget: list, required: false, field: { name: servizio, label: Servizio, widget: string } }
+      - { name: campo_x, label: "Posizione sul campo: orizzontale (40-360)", widget: number, value_type: int, default: 200 }
+      - { name: campo_y, label: "Posizione sul campo: verticale (40 = attacco, 500 = porta)", widget: number, value_type: int, default: 280 }
+
+  # ---------------- Clienti ----------------
+  - name: clienti
+    label: Clienti
+    label_singular: Cliente
+    folder: src/_data/clienti
+    extension: json
+    format: json
+    create: true
+    identifier_field: nome
+    slug: "{{ordine}}-{{nome}}"
+    summary: "{{ordine}} · {{nome}}"
+    fields:
+      - { name: nome, label: Nome, widget: string }
+      - { name: descrizione, label: Descrizione breve, widget: string, required: false }
+      - { name: settore, label: Settore, widget: select, options: [ { label: Sport, value: sport }, { label: Salute e benessere, value: salute }, { label: Aziende e servizi, value: aziende }, { label: Scuole ed enti, value: scuole } ] }
+      - { name: logo, label: Logo (versione a colori o scura), widget: image }
+      - { name: logo_scuro, label: Logo (versione bianca per il tema scuro), widget: image, required: false }
+      - { name: larghezza_logo, label: "Larghezza logo in pixel (60 per loghi quadrati, 160 per loghi lunghi)", widget: number, value_type: int, default: 110 }
+      - { name: ordine, label: Ordine, widget: number, value_type: int, default: 99 }

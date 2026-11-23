@@ -1,0 +1,29 @@
+---
+layout: base.njk
+---
+<section class="page-hero">
+  <div class="wrap" style="position:relative">
+    <nav class="crumbs" aria-label="Percorso"><a href="/">Home</a><span>/</span><a href="/lavori/">Lavori</a><span>/</span><span aria-current="page">{{ titolo }}</span></nav>
+    <h1 class="display">{{ titolo }}</h1>
+    <p class="intro">{{ riassunto }}</p>
+    <div class="project-meta">
+      <div><b>Cliente</b>{{ cliente }}</div>
+      {% if servizi.length %}<div><b>Servizi</b>{{ servizi | join(" · ") }}</div>{% endif %}
+      {% if data %}<div><b>Anno</b>{{ data | isoData | truncate(4, true, "") }}</div>{% endif %}
+    </div>
+  </div>
+</section>
+<section class="sec"><div class="wrap" style="display:grid;gap:clamp(28px,4vw,48px)">
+  {% if copertina %}<div class="project-hero"><img src="{{ copertina }}" alt="{{ titolo }} · {{ cliente }}"></div>{% endif %}
+  {% if risultato %}<p class="result">{{ risultato }}</p>{% endif %}
+  <div class="prose">{{ content | safe }}</div>
+  {% if video %}
+    <div class="video-embed">
+    {%- if "youtube.com" in video or "youtu.be" in video %}<iframe src="https://www.youtube-nocookie.com/embed/{{ video | replace('https://youtu.be/','') | replace('https://www.youtube.com/watch?v=','') }}" title="{{ titolo }}" allowfullscreen loading="lazy"></iframe>
+    {%- elif "vimeo.com" in video %}<iframe src="https://player.vimeo.com/video/{{ video | replace('https://vimeo.com/','') }}" title="{{ titolo }}" allowfullscreen loading="lazy"></iframe>
+    {%- else %}<video src="{{ video }}" controls playsinline preload="metadata"></video>{% endif %}
+    </div>
+  {% endif %}
+  {% if galleria.length %}<div class="gallery">{% for g in galleria %}<img src="{{ g }}" alt="{{ titolo }}, immagine {{ loop.index }}" loading="lazy" decoding="async">{% endfor %}</div>{% endif %}
+</div></section>
+{% include "cta.njk" %}

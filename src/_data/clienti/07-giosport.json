@@ -1,0 +1,9 @@
+{
+  "nome": "GioSport",
+  "descrizione": "",
+  "settore": "sport",
+  "logo": "/assets/uploads/clienti/giosport.webp",
+  "logo_scuro": "/assets/uploads/clienti/giosport-bianco.webp",
+  "larghezza_logo": 88,
+  "ordine": 7
+}

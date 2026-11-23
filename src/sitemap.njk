@@ -1,0 +1,16 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+{%- for p in collections.all %}{% if p.url and not p.data.noindex and p.outputPath and p.outputPath.endsWith(".html") %}
+  <url>
+    <loc>{{ site.url }}{{ p.url }}</loc>
+    <lastmod>{{ p.date | isoData }}</lastmod>
+    {%- if p.data.copertina %}<image:image><image:loc>{{ site.url }}{{ p.data.copertina }}</image:loc></image:image>{% endif %}
+    {%- if p.url == "/studio/" %}{% for m in squadra | elenco("numero") %}{% if m.foto %}<image:image><image:loc>{{ site.url }}{{ m.foto }}</image:loc></image:image>{% endif %}{% endfor %}{% endif %}
+    {%- if p.url == "/clienti/" %}{% for c in clienti | elenco("ordine") %}<image:image><image:loc>{{ site.url }}{{ c.logo }}</image:loc></image:image>{% endfor %}{% endif %}
+  </url>
+{%- endif %}{% endfor %}
+</urlset>

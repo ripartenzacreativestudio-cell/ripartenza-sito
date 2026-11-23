@@ -1,0 +1,19 @@
+{
+  "numero": "05",
+  "nome": "Martino",
+  "cognome": "Tagliente",
+  "ruolo": "Grafica e identità visiva",
+  "posizione": "Attaccante · inventa la giocata",
+  "foto": "",
+  "compiti": [
+    "Loghi e identità visive",
+    "Grafiche per social e campagne",
+    "Materiali stampati e allestimenti"
+  ],
+  "servizi": [
+    "Branding",
+    "Social media"
+  ],
+  "campo_x": 280,
+  "campo_y": 132
+}

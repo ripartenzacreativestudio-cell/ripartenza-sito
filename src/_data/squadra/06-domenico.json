@@ -1,0 +1,18 @@
+{
+  "numero": "06",
+  "nome": "Domenico",
+  "cognome": "Bari",
+  "ruolo": "Foto e videomaking",
+  "posizione": "Centrocampista · cuce il gioco",
+  "foto": "",
+  "compiti": [
+    "Shooting fotografici",
+    "Riprese e montaggio video",
+    "Copertura di eventi e partite"
+  ],
+  "servizi": [
+    "Foto & Video"
+  ],
+  "campo_x": 200,
+  "campo_y": 232
+}

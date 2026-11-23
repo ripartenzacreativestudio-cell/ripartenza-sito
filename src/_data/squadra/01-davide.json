@@ -1,0 +1,20 @@
+{
+  "numero": "01",
+  "nome": "Davide",
+  "cognome": "Abrescia",
+  "ruolo": "Fondatore · regia e strategia",
+  "posizione": "Portiere · guida la squadra da dietro",
+  "foto": "/assets/uploads/squadra/team-01.jpg",
+  "compiti": [
+    "Direzione creativa e strategia di comunicazione",
+    "Rapporti con clienti, enti e partner",
+    "Coordinamento della squadra e dei progetti"
+  ],
+  "servizi": [
+    "Strategia",
+    "Branding",
+    "Social media"
+  ],
+  "campo_x": 200,
+  "campo_y": 500
+}
