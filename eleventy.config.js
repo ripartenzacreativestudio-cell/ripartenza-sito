@@ -15,11 +15,19 @@ module.exports = function (cfg) {
     return JSON.stringify(clean({
       "@context": "https://schema.org", "@type": "ProfessionalService", name: site.nome, url: site.url + "/",
       logo: site.url + "/assets/img/logo-512.png", image: site.url + "/assets/img/og-image.jpg", description: site.descrizione,
-      email: site.email, telephone: site.telefono,
+      "@id": site.url + "/#studio", email: site.email, telephone: site.telefono, vatID: site.piva, legalName: site.ragione_sociale,
       address: { "@type": "PostalAddress", streetAddress: site.indirizzo, addressLocality: site.citta, addressRegion: site.regione, addressCountry: "IT" },
       areaServed: [site.citta, site.regione], sameAs: ["https://www.instagram.com/" + site.instagram + "/"],
     }));
   });
+  cfg.addFilter("schemaServizio", (pg, site) => JSON.stringify({
+    "@context": "https://schema.org", "@graph": [
+      { "@type": "Service", name: pg.titolo, serviceType: pg.titolo, description: pg.descrizione, url: site.url + pg.url,
+        provider: { "@id": site.url + "/#studio" }, areaServed: [{ "@type": "City", name: site.citta }, { "@type": "AdministrativeArea", name: site.regione }] },
+      { "@type": "BreadcrumbList", itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: site.url + "/" },
+        { "@type": "ListItem", position: 2, name: "Servizi", item: site.url + "/servizi/" },
+        { "@type": "ListItem", position: 3, name: pg.titolo, item: site.url + pg.url } ] } ] }));
   cfg.addFilter("isoData", (d) => (d ? new Date(d).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10)));
   cfg.addFilter("anno", () => new Date().getFullYear());
   cfg.addFilter("telefono", (t) => String(t || "").replace(/[^\d+]/g, ""));

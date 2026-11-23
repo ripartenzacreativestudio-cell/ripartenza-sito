@@ -1,6 +1,7 @@
 ---
 layout: base.njk
 ---
+<script type="application/ld+json">{{ {titolo: titolo, descrizione: descrizione, url: page.url} | schemaServizio(site) | safe }}</script>
 <section class="page-hero">
   <svg class="lines" viewBox="0 0 520 360" aria-hidden="true"><use href="#field-lines"/></svg>
   <div class="wrap" style="position:relative">
