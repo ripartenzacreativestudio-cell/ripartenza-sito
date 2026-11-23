@@ -15,7 +15,7 @@ Solo i dati che inserisci nel modulo preventivo: nome, azienda, email, telefono 
 Per rispondere alla tua richiesta e inviarti la proposta. Non li usiamo per newsletter o pubblicità e non li cediamo a terzi. La base giuridica è la tua richiesta (misure precontrattuali, art. 6.1.b GDPR).
 
 ## Dove sono conservati e per quanto
-Le richieste vengono ricevute tramite il servizio che ospita il sito e inoltrate alla nostra email. Le conserviamo per il tempo necessario a gestire la richiesta e l'eventuale collaborazione, e comunque non oltre 24 mesi se non nasce un rapporto di lavoro.
+Le richieste vengono inoltrate alla nostra email tramite il servizio FormSubmit (formsubmit.co), che le trasmette senza usarle per altri scopi. Le conserviamo per il tempo necessario a gestire la richiesta e l'eventuale collaborazione, e comunque non oltre 24 mesi se non nasce un rapporto di lavoro.
 
 ## Cookie
 Il sito non usa cookie di profilazione né strumenti di statistica. Salva solo nel tuo browser la preferenza tra tema chiaro e scuro.
