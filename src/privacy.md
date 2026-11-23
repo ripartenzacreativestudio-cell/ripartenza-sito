@@ -2,6 +2,7 @@
 permalink: /privacy/
 titolo: Informativa privacy
 layout: base.njk
+fuori_sitemap: true
 ---
 <section class="page-hero"><div class="wrap"><p class="label">Privacy</p><h1 class="display">Informativa privacy</h1></div></section>
 <section class="sec"><div class="wrap prose">

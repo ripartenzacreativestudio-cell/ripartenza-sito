@@ -28,6 +28,11 @@ module.exports = function (cfg) {
         { "@type": "ListItem", position: 1, name: "Home", item: site.url + "/" },
         { "@type": "ListItem", position: 2, name: "Servizi", item: site.url + "/servizi/" },
         { "@type": "ListItem", position: 3, name: pg.titolo, item: site.url + pg.url } ] } ] }));
+  // ordine nella sitemap: home, servizi, sport, lavori, studio, clienti, preventivo, resto
+  cfg.addFilter("ordinaSitemap", (arr) => {
+    const peso = (u) => u === "/" ? 0 : u === "/servizi/" ? 1 : u.startsWith("/servizi/") ? 2 : u === "/sport/" ? 3 : u.startsWith("/lavori/") ? 4 : u === "/studio/" ? 5 : u === "/clienti/" ? 6 : u === "/preventivo/" ? 7 : 9;
+    return [...arr].sort((a, b) => peso(a.url || "") - peso(b.url || "") || String(a.url).localeCompare(String(b.url)));
+  });
   cfg.addFilter("isoData", (d) => (d ? new Date(d).toISOString().slice(0, 10) : new Date().toISOString().slice(0, 10)));
   cfg.addFilter("anno", () => new Date().getFullYear());
   cfg.addFilter("telefono", (t) => String(t || "").replace(/[^\d+]/g, ""));

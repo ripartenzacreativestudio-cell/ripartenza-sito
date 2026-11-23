@@ -4,7 +4,7 @@ eleventyExcludeFromCollections: true
 ---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-{%- for p in collections.all %}{% if p.url and not p.data.noindex and p.outputPath and p.outputPath.endsWith(".html") %}
+{%- for p in collections.all | ordinaSitemap %}{% if p.url and not p.data.noindex and not p.data.fuori_sitemap and p.outputPath and p.outputPath.endsWith(".html") %}
   <url>
     <loc>{{ site.url }}{{ p.url }}</loc>
     <lastmod>{{ p.date | isoData }}</lastmod>
