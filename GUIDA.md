@@ -30,7 +30,7 @@ Costi: dominio su OVH (circa 10–15 € l'anno). GitHub e Netlify gratuiti per 
 1. Vai su **netlify.com** → registrati con **"Sign up with GitHub"**.
 2. **Add new project → Import an existing project → GitHub** → autorizza → scegli `ripartenza-sito`.
 3. Le impostazioni si compilano da sole (le legge dal file `netlify.toml`). Premi **Deploy**.
-4. Dopo un paio di minuti il sito è online su un indirizzo provvisorio tipo `ripartenza-sito.netlify.app`.
+4. Dopo un paio di minuti il sito è online su `ripartenza-sito.netlify.app` (indirizzo tecnico, resta attivo e porta al dominio).
    Nelle impostazioni del progetto puoi cambiare il nome provvisorio.
 
 ### 3. Accesso al pannello /admin
@@ -55,21 +55,21 @@ Il pannello usa gli account GitHub per entrare, così solo chi autorizzate può 
    Il piano gratuito ha un limite mensile di invii, ampiamente sufficiente per iniziare.
 
 ### 5. Il dominio (OVH)
-1. Compra il dominio su **ovhcloud.com** (non serve l'hosting).
-2. Su Netlify: progetto → **Domain management → Add a domain** → scrivi `www.tuodominio.it` → conferma.
+1. Il dominio dello studio è **ripartenza-creativestudio.it** (registrato su OVH, non serve l'hosting).
+2. Su Netlify: progetto → **Domain management → Add a domain** → scrivi `ripartenza-creativestudio.it` → conferma (Netlify aggiunge da solo anche il www).
 3. Su OVH: **Web Cloud → Domini → il dominio → Zona DNS** e imposta questi record
    (eliminando eventuali record A o CNAME già presenti per gli stessi nomi):
 
    | Tipo  | Sottodominio | Destinazione                       |
    |-------|--------------|------------------------------------|
    | CNAME | www          | `ripartenza-sito.netlify.app.`     |
-   | A     | (vuoto)      | l'indirizzo IP indicato da Netlify nella schermata del dominio |
+   | A     | (vuoto)      | `75.2.60.5` (controlla che sia l'IP indicato da Netlify) |
 
    I record MX dell'email non vanno toccati.
 4. Entro qualche ora Netlify verifica il dominio e attiva da solo **HTTPS** (lucchetto).
-   Imposta `www.tuodominio.it` come dominio principale: chi scrive senza www viene reindirizzato.
-5. Nel pannello: **Pagine e impostazioni → Dati dello studio → Indirizzo del sito**: scrivi `https://www.tuodominio.it`
-   e pubblica. In `src/admin/config.yml` sostituisci anche `site_url` e `display_url`.
+   Il dominio principale è `ripartenza-creativestudio.it`: chi scrive con www viene reindirizzato.
+5. L'indirizzo del sito è già impostato su `https://ripartenza-creativestudio.it` (in **Dati dello studio** e in `src/admin/config.yml`).
+   Se un giorno cambia dominio, va aggiornato in entrambi.
 
 ### 6. Google
 1. **search.google.com/search-console** → Aggiungi proprietà → Dominio → verifica con il record TXT nella Zona DNS di OVH.
